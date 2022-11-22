@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Raleway:wght@100;400;700&display=swap');
+
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    color: lightgray;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    background: rgb(31, 31, 31);
+    background: linear-gradient(
+        328deg,
+        rgba(31, 31, 31, 1) 0%,
+        rgba(36, 38, 42, 1) 51%,
+        rgba(0, 0, 0, 1) 100%
+    );
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.ant-input {
+    background-color: transparent;
+    border: none;
+    text-transform: capitalize;
+    color: white;
+    border-bottom: 1px solid lightgray;
+}
+
+.ant-input-group-wrapper input:focus {
+    box-shadow: 0 0 0 0;
+}
+
+.ant-input-search .ant-input:hover {
+    border-bottom: 1px solid lightgray;
+}
+
+.ant-input-search > .ant-input-group > .ant-input-group-addon {
+    border: none;
+    background-color: transparent !important;
+}
+
+.ant-btn {
+    background-color: transparent !important;
+    border: none;
+}
+
+button {
+    color: white !important;
+}

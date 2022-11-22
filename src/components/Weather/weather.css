@@ -1,0 +1,47 @@
+.weather-wrapper {
+    padding: 0rem 0 2rem 0;
+}
+
+.weather-wrapper > .ant-row {
+    align-items: center;
+    justify-content: center;
+}
+
+.wrap-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-img {
+    height: 50px;
+}
+
+.temperature {
+    font-size: 65px;
+    margin: 0;
+}
+
+.low-max-temp {
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 411px) {
+    .weather-wrapper {
+        padding: 0.5rem 0;
+    }
+
+    .weather-wrapper > .ant-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .temperature {
+        font-size: 50px;
+    }
+
+    .low-max-temp {
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+}

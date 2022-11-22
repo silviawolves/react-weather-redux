@@ -1,0 +1,14 @@
+.searchbar {
+    border-bottom: 1px solid lightgray;
+}
+
+.searchbar {
+    text-transform: capitalize;
+    color: white;
+    background-color: transparent !important;
+    border: none;
+}
+
+.ant-input-group-wrapper input:focus {
+    box-shadow: 0 0 0 0;
+}

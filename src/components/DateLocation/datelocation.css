@@ -1,0 +1,25 @@
+.dl-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+h1 {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.7) !important;
+    padding: 0;
+    margin: 0;
+}
+
+.date-time {
+    font-size: 1.2rem;
+    font-weight: lighter;
+}
+
+@media screen and (max-width: 411px) {
+    .dl-wrapper {
+        padding: 0.5rem;
+    }
+}
