@@ -9,7 +9,6 @@ const Forecast = (props) => {
         lat: props.data?.coord.lat,
         lon: props.data?.coord.lon,
     });
-    console.log(data?.list);
 
     const forecast = data?.list;
 
@@ -32,10 +31,10 @@ const Forecast = (props) => {
     };
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        <h6>Oh no, there was an error</h6>;
     } else if (loading) {
-        return <div>Loading...</div>;
-    } else {
+        <h6>Loading...</h6>;
+    } else if (data) {
         return (
             <div className="forecast">
                 <Divider

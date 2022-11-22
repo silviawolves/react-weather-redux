@@ -23,6 +23,7 @@ const {Search} = Input;
 const Container = () => {
     const [city, setCity] = useState('Venezia');
     const {data, error, loading} = useGetWeatherByCityQuery(city);
+    console.log(data);
     const [form] = Form.useForm();
 
     const mapImage = (id) => {
@@ -58,10 +59,10 @@ const Container = () => {
     };
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        <h6>Oh no, there was an error</h6>;
     } else if (loading) {
-        return <div>Loading...</div>;
-    } else {
+        <h6>Loading...</h6>;
+    } else if (data) {
         return (
             <div
                 className="App"

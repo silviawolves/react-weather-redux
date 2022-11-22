@@ -1,4 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
+import {setupListeners} from '@reduxjs/toolkit/query';
 import {combineReducers} from 'redux';
 import {weatherApi} from '../api/weather';
 
@@ -11,3 +12,4 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(weatherApi.middleware),
 });
+setupListeners(store.dispatch);
