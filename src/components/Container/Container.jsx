@@ -1,12 +1,10 @@
 import './container.css';
 
-import {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useState} from 'react';
 import {Input, Layout, Form} from 'antd';
 import {LoadingOutlined} from '@ant-design/icons';
-import {API_KEY} from '../../api';
+import {useGetWeatherByCityQuery} from '../../api/weather';
 
-import dayjs from 'dayjs';
 import DateLocation from '../DateLocation';
 import Weather from '../Weather';
 import Forecast from '../Forecast';
@@ -23,11 +21,8 @@ const {Content} = Layout;
 const {Search} = Input;
 
 const Container = () => {
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
     const [city, setCity] = useState('Venezia');
-    const [result, setResult] = useState({});
-
+    const {data, error, loading} = useGetWeatherByCityQuery(city);
     const [form] = Form.useForm();
 
     const mapImage = (id) => {
@@ -62,40 +57,10 @@ const Container = () => {
         form.resetFields();
     };
 
-    useEffect(() => {
-        const handleError = (response) => {
-            if (!response.ok) {
-                throw setCity('');
-            } else {
-                return response.json();
-            }
-        };
-
-        fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`,
-        )
-            .then(handleError)
-            .then((data) => {
-                setIsLoaded(true);
-                setResult(data);
-            })
-            .catch((error) => {
-                setError(error);
-                setIsLoaded(true);
-            });
-    }, [city]);
-
-    if (!isLoaded) {
-        return (
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}>
-                <LoadingOutlined />
-            </div>
-        );
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    } else if (loading) {
+        return <div>Loading...</div>;
     } else {
         return (
             <div
@@ -103,7 +68,7 @@ const Container = () => {
                 style={{
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
-                    backgroundImage: mapImage(result.weather[0].id),
+                    backgroundImage: mapImage(data?.weather[0].id),
                 }}>
                 <Content>
                     <Form
@@ -115,14 +80,9 @@ const Container = () => {
                         </Form.Item>
                     </Form>
 
-                    <DateLocation
-                        name={result.name}
-                        country={result.sys.country.toUpperCase()}
-                        date={dayjs().format('dddd')}
-                    />
-
-                    <Weather data={result} />
-                    <Forecast data={result} />
+                    <DateLocation data={data} />
+                    <Weather data={data} />
+                    <Forecast data={data} />
                 </Content>
             </div>
         );

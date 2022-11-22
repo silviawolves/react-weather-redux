@@ -9,8 +9,8 @@ const Weather = (props) => {
                 <Col span={12}>
                     <div className="wrap-col">
                         <img
-                            src={`http://openweathermap.org/img/wn/${props.data.weather[0].icon}.png`}
-                            alt={props.data.weather[0].description}
+                            src={`http://openweathermap.org/img/wn/${props.data?.weather[0].icon}.png`}
+                            alt={props.data?.weather[0].description}
                             className="weather-img"
                         />
                         <p
@@ -19,12 +19,12 @@ const Weather = (props) => {
                                 margin: 0,
                                 fontSize: '1.5rem',
                             }}>
-                            {props.data.weather[0].main}
+                            {props.data?.weather[0].main}
                         </p>
                     </div>
                     <div>
                         <p className="temperature">
-                            {Math.round(props.data.main.temp)}° C
+                            {Math.round(props.data?.main.temp)}° C
                         </p>
                     </div>
                 </Col>
@@ -32,7 +32,7 @@ const Weather = (props) => {
                 <Col md={6} xs={8}>
                     <p className="low-max-temp">
                         <ArrowUpOutlined />{' '}
-                        {Math.round(props.data.main.temp_max)}° C
+                        {Math.round(props.data?.main.temp_max)}° C
                     </p>
                     <Divider
                         sm={{display: 'none'}}
@@ -40,7 +40,7 @@ const Weather = (props) => {
                     />
                     <p className="low-max-temp">
                         <ArrowDownOutlined />{' '}
-                        {Math.round(props.data.main.temp_min)}° C
+                        {Math.round(props.data?.main.temp_min)}° C
                     </p>
                 </Col>
             </Row>

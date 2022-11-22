@@ -1,16 +1,20 @@
-import {useState, useEffect} from 'react';
 import {Divider, Row, Col} from 'antd';
+import {useGetWeatherByCoordQuery} from '../../api/weather';
 import dayjs from 'dayjs';
-import {API_KEY} from '../../api';
+
 import './forecast.css';
 
 const Forecast = (props) => {
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [forecast, setForecast] = useState({});
+    const {data, error, loading} = useGetWeatherByCoordQuery({
+        lat: props.data?.coord.lat,
+        lon: props.data?.coord.lon,
+    });
+    console.log(data?.list);
+
+    const forecast = data?.list;
 
     const formatDays = () => {
-        return forecast.list
+        return forecast
             .map((data) => {
                 return {
                     days: dayjs(data.dt * 1000)
@@ -27,26 +31,9 @@ const Forecast = (props) => {
             .slice(0, 6);
     };
 
-    useEffect(() => {
-        fetch(
-            `https://api.openweathermap.org/data/2.5/forecast?lat=${props.data.coord.lat}&lon=${props.data.coord.lon}&appid=${API_KEY}&units=metric`,
-        )
-            .then((response) => response.json())
-            .then(
-                (data) => {
-                    setIsLoaded(true);
-                    setForecast(data);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                },
-            );
-    }, [props]);
-
     if (error) {
         return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
+    } else if (loading) {
         return <div>Loading...</div>;
     } else {
         return (

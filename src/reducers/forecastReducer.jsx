@@ -32,5 +32,5 @@ export const forecastSlice = createSlice({
     },
 });
 
-export const {setError} = forecastSlice.actions;
+// export const {setError} = forecastSlice.actions;
 export default forecastSlice.reducer;
