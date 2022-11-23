@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import {API_KEY} from '../api_key';
+import {API_KEY} from './api_key';
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 

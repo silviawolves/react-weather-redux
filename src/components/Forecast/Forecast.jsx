@@ -31,7 +31,7 @@ const Forecast = (props) => {
     };
 
     if (error) {
-        <h6>Oh no, there was an error</h6>;
+        <h6>You broke it.</h6>;
     } else if (loading) {
         <h6>Loading...</h6>;
     } else if (data) {

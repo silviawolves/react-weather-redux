@@ -23,7 +23,7 @@ const {Search} = Input;
 const Container = () => {
     const [city, setCity] = useState('Venezia');
     const {data, error, loading} = useGetWeatherByCityQuery(city);
-    console.log(data);
+
     const [form] = Form.useForm();
 
     const mapImage = (id) => {
@@ -49,8 +49,8 @@ const Container = () => {
 
     const onSearch = (value) => {
         setCity(value);
-        if (value === '') {
-            setCity(city);
+        if (value === '' || value === ' ') {
+            setCity('Venezia');
         }
     };
 
@@ -59,7 +59,8 @@ const Container = () => {
     };
 
     if (error) {
-        <h6>Oh no, there was an error</h6>;
+        setCity('Venezia');
+        <h6>You broke it.</h6>;
     } else if (loading) {
         <h6>Loading...</h6>;
     } else if (data) {
