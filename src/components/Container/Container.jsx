@@ -60,9 +60,9 @@ const Container = () => {
 
     if (error) {
         setCity('Venezia');
-        <h6>You broke it.</h6>;
+        console.log('City is not valid.');
     } else if (loading) {
-        <h6>Loading...</h6>;
+        <LoadingOutlined />;
     } else if (data) {
         return (
             <div
