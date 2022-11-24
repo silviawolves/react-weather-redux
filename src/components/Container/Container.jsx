@@ -24,11 +24,26 @@ const Container = () => {
     const [city, setCity] = useState('Venezia');
     const {data, error, loading} = useGetWeatherByCityQuery(city);
 
+    //DateLocation component props
+    const headerData = {
+        name: data?.name,
+        country: data?.sys.country,
+    };
+
+    //Weather component props
+    const weatherData = {
+        icon: data?.weather[0].icon,
+        description: data?.weather[0].description,
+        temperature: data?.main.temp,
+        maxTemp: data?.main.temp_max,
+        minTemp: data?.main.temp_min,
+    };
+
+    //Forecast component props to get query params
     const forecastData = {
         lat: data?.coord.lat,
         lon: data?.coord.lon,
     };
-    console.log(forecastData);
 
     const [form] = Form.useForm();
 
@@ -89,8 +104,8 @@ const Container = () => {
                         </Form.Item>
                     </Form>
 
-                    <DateLocation data={data} />
-                    <Weather data={data} />
+                    <DateLocation data={headerData} />
+                    <Weather data={weatherData} />
                     <Forecast data={forecastData} />
                 </Content>
             </div>

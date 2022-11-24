@@ -12,7 +12,7 @@ const Forecast = (props) => {
 
     const forecast = data?.list;
 
-    const formatDays = () => {
+    const formatData = () => {
         return forecast
             .map((data) => {
                 return {
@@ -31,7 +31,7 @@ const Forecast = (props) => {
     };
 
     if (error) {
-        console.log('you did it, you broke the app.');
+        console.log('You did it, you broke the app.');
     } else if (loading) {
         console.log('loading');
     } else if (data) {
@@ -44,8 +44,11 @@ const Forecast = (props) => {
                     Daily Forecast
                 </Divider>
 
-                <Row align="middle" justify="space-between">
-                    {formatDays(forecast)
+                <Row
+                    align="middle"
+                    justify="space-between"
+                    style={{paddingTop: 10}}>
+                    {formatData(forecast)
                         .splice(0, 5)
                         .map((data, i) => (
                             <Col key={i}>

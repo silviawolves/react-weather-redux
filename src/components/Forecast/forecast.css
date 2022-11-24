@@ -23,12 +23,11 @@
     font-weight: lighter;
     font-size: 1.5rem;
     color: white;
-    margin-bottom: 15px;
 }
 
 @media screen and (max-width: 411px) {
     .forecast {
-        padding: 0.5rem 2rem 3.5rem 2rem;
+        padding: 0.5rem 2rem 2.5rem 2rem;
         border-radius: 20px 20px 0px 0px;
     }
 }

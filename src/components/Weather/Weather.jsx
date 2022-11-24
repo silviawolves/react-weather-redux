@@ -9,8 +9,8 @@ const Weather = (props) => {
                 <Col span={12}>
                     <div className="wrap-col">
                         <img
-                            src={`http://openweathermap.org/img/wn/${props.data?.weather[0].icon}.png`}
-                            alt={props.data?.weather[0].description}
+                            src={`http://openweathermap.org/img/wn/${props.data.icon}.png`}
+                            alt={props.data.description}
                             className="weather-img"
                         />
                         <p
@@ -19,28 +19,27 @@ const Weather = (props) => {
                                 margin: 0,
                                 fontSize: '1.5rem',
                             }}>
-                            {props.data?.weather[0].main}
+                            {props.data.main}
                         </p>
                     </div>
                     <div>
                         <p className="temperature">
-                            {Math.round(props.data?.main.temp)}° C
+                            {Math.round(props.data.temperature)}° C
                         </p>
                     </div>
                 </Col>
 
                 <Col md={6} xs={8}>
                     <p className="low-max-temp">
-                        <ArrowUpOutlined />{' '}
-                        {Math.round(props.data?.main.temp_max)}° C
+                        <ArrowUpOutlined /> {Math.round(props.data.maxTemp)}° C
                     </p>
                     <Divider
                         sm={{display: 'none'}}
                         style={{borderColor: 'rgba(255, 255, 255, 0.5)'}}
                     />
                     <p className="low-max-temp">
-                        <ArrowDownOutlined />{' '}
-                        {Math.round(props.data?.main.temp_min)}° C
+                        <ArrowDownOutlined /> {Math.round(props.data.minTemp)}°
+                        C
                     </p>
                 </Col>
             </Row>

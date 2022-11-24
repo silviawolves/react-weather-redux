@@ -5,7 +5,7 @@ const DateLocation = (props) => {
     return (
         <div className="dl-wrapper">
             <h1 style={{textTransform: 'capitalize'}}>
-                {props.data?.name}, {props.data?.sys.country.toUpperCase()}
+                {props.data.name}, {props.data.country.toUpperCase()}
             </h1>
 
             <p className="date-time">{dayjs().format('dddd')}</p>
