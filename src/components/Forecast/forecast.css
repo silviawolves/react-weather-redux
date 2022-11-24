@@ -10,6 +10,10 @@
     border-radius: 20px;
 }
 
+.forecastLoader {
+    padding: 2.3rem;
+}
+
 .daily-wrapper {
     display: flex;
     flex-direction: column;
@@ -29,5 +33,12 @@
     .forecast {
         padding: 0.5rem 2rem 2.5rem 2rem;
         border-radius: 20px 20px 0px 0px;
+    }
+
+    .forecastLoader {
+        padding: 2.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

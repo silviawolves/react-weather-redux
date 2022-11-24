@@ -1,11 +1,12 @@
-import {Divider, Row, Col} from 'antd';
+import {Divider, Row, Col, Skeleton} from 'antd';
+import {LoadingOutlined} from '@ant-design/icons';
 import {useGetWeatherByCoordQuery} from '../../api/weather';
 import dayjs from 'dayjs';
 
 import './forecast.css';
 
 const Forecast = (props) => {
-    const {data, error, loading} = useGetWeatherByCoordQuery({
+    const {data, error, isLoading, isFetching} = useGetWeatherByCoordQuery({
         lat: props.data.lat,
         lon: props.data.lon,
     });
@@ -32,9 +33,19 @@ const Forecast = (props) => {
 
     if (error) {
         console.log('You did it, you broke the app.');
-    } else if (loading) {
-        console.log('loading');
-    } else if (data) {
+    }
+    if ((isLoading, isFetching)) {
+        return (
+            <div className="forecast forecastLoader">
+                <Skeleton
+                    active
+                    title={false}
+                    paragraph={{rows: 4, width: '100%'}}
+                />
+            </div>
+        );
+    }
+    if (data) {
         return (
             <div className="forecast">
                 <Divider

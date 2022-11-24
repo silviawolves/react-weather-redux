@@ -1,7 +1,7 @@
 import './container.css';
 
 import {useState} from 'react';
-import {Input, Layout, Form, Skeleton} from 'antd';
+import {Input, Layout, Form} from 'antd';
 import {LoadingOutlined} from '@ant-design/icons';
 import {useGetWeatherByCityQuery} from '../../api/weather';
 
@@ -84,14 +84,7 @@ const Container = () => {
     }
     if ((isLoading, isFetching)) {
         return (
-            <div
-                style={{
-                    height: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    background: `linear-gradient(0deg, rgba(51,50,45,1) 0%, rgba(139,127,116,1) 100%)`,
-                }}>
+            <div className="loader">
                 <LoadingOutlined />
             </div>
         );
