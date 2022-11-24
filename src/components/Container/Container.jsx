@@ -1,7 +1,7 @@
 import './container.css';
 
 import {useState} from 'react';
-import {Input, Layout, Form} from 'antd';
+import {Input, Layout, Form, Skeleton} from 'antd';
 import {LoadingOutlined} from '@ant-design/icons';
 import {useGetWeatherByCityQuery} from '../../api/weather';
 
@@ -21,16 +21,17 @@ const {Content} = Layout;
 const {Search} = Input;
 
 const Container = () => {
+    const [form] = Form.useForm();
     const [city, setCity] = useState('Venezia');
-    const {data, error, loading} = useGetWeatherByCityQuery(city);
+    const {data, error, isLoading, isFetching} = useGetWeatherByCityQuery(city);
 
-    //DateLocation component props
+    //dateLocation component props
     const headerData = {
         name: data?.name,
         country: data?.sys.country,
     };
 
-    //Weather component props
+    //weather component props
     const weatherData = {
         icon: data?.weather[0].icon,
         description: data?.weather[0].description,
@@ -39,13 +40,11 @@ const Container = () => {
         minTemp: data?.main.temp_min,
     };
 
-    //Forecast component props to get query params
+    //forecast component props to get query params
     const forecastData = {
         lat: data?.coord.lat,
         lon: data?.coord.lon,
     };
-
-    const [form] = Form.useForm();
 
     const mapImage = (id) => {
         switch (true) {
@@ -82,10 +81,22 @@ const Container = () => {
     if (error) {
         setCity('Venezia');
         console.log('City is not valid.');
-    } else if (loading) {
-        <LoadingOutlined />;
-        console.log('Loading');
-    } else if (data) {
+    }
+    if ((isLoading, isFetching)) {
+        return (
+            <div
+                style={{
+                    height: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    background: `linear-gradient(0deg, rgba(51,50,45,1) 0%, rgba(139,127,116,1) 100%)`,
+                }}>
+                <LoadingOutlined />
+            </div>
+        );
+    }
+    if (data) {
         return (
             <div
                 className="App"
