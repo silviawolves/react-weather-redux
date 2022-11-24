@@ -21,7 +21,6 @@ const {Content} = Layout;
 const {Search} = Input;
 
 const Container = () => {
-    const [form] = Form.useForm();
     const [city, setCity] = useState('Venezia');
     const {data, error, isLoading, isFetching} = useGetWeatherByCityQuery(city);
 
@@ -73,6 +72,8 @@ const Container = () => {
             setCity('Venezia');
         }
     };
+
+    const [form] = Form.useForm();
 
     const onSubmit = () => {
         form.resetFields();
