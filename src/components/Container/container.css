@@ -22,11 +22,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(
-        0deg,
-        rgba(51, 50, 45, 1) 0%,
-        rgba(139, 127, 116, 1) 100%
-    );
+    backdrop-filter: blur(3px);
+    background-color: rgba(90, 90, 90, 0.2);
 }
 
 @media screen and (max-width: 411px) {
