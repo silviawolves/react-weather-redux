@@ -24,6 +24,12 @@ const Container = () => {
     const [city, setCity] = useState('Venezia');
     const {data, error, loading} = useGetWeatherByCityQuery(city);
 
+    const forecastData = {
+        lat: data?.coord.lat,
+        lon: data?.coord.lon,
+    };
+    console.log(forecastData);
+
     const [form] = Form.useForm();
 
     const mapImage = (id) => {
@@ -54,7 +60,7 @@ const Container = () => {
         }
     };
 
-    const onSubmit = ({search}) => {
+    const onSubmit = () => {
         form.resetFields();
     };
 
@@ -63,6 +69,7 @@ const Container = () => {
         console.log('City is not valid.');
     } else if (loading) {
         <LoadingOutlined />;
+        console.log('Loading');
     } else if (data) {
         return (
             <div
@@ -84,7 +91,7 @@ const Container = () => {
 
                     <DateLocation data={data} />
                     <Weather data={data} />
-                    <Forecast data={data} />
+                    <Forecast data={forecastData} />
                 </Content>
             </div>
         );

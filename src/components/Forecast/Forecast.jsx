@@ -6,8 +6,8 @@ import './forecast.css';
 
 const Forecast = (props) => {
     const {data, error, loading} = useGetWeatherByCoordQuery({
-        lat: props.data?.coord.lat,
-        lon: props.data?.coord.lon,
+        lat: props.data.lat,
+        lon: props.data.lon,
     });
 
     const forecast = data?.list;
@@ -31,9 +31,9 @@ const Forecast = (props) => {
     };
 
     if (error) {
-        <h6>You broke it.</h6>;
+        console.log('you did it, you broke the app.');
     } else if (loading) {
-        <h6>Loading...</h6>;
+        console.log('loading');
     } else if (data) {
         return (
             <div className="forecast">
