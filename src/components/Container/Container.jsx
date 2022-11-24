@@ -75,7 +75,8 @@ const Container = () => {
 
     const [form] = Form.useForm();
 
-    const onSubmit = () => {
+    const onSubmit = (search) => {
+        console.log(search);
         form.resetFields();
     };
 
@@ -102,9 +103,11 @@ const Container = () => {
                 <Content>
                     <Form
                         form={form}
+                        name="search"
                         className="input-wrapper"
+                        initialValues={city}
                         onFinish={onSubmit}>
-                        <Form.Item name="search">
+                        <Form.Item>
                             <Search onSearch={onSearch} />
                         </Form.Item>
                     </Form>
