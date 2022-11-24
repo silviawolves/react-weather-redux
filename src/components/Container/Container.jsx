@@ -86,7 +86,7 @@ const Container = () => {
     if ((isLoading, isFetching)) {
         return (
             <div className="loader">
-                <LoadingOutlined />
+                <LoadingOutlined style={{fontSize: 35}} />
             </div>
         );
     }
